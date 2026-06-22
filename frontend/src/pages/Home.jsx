@@ -1,8 +1,10 @@
 import { useState } from "react";
 import MovieCard from "../assets/components/MovieCard";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
   const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
 
   const movies = [
     { id: 1, title: "John Wick", release_date: "2020" },
@@ -16,6 +18,10 @@ function Home() {
     alert(searchQuery);
     setSearchQuery('------');
   };
+
+  const goToFav = () => {
+    navigate("/Favourites");
+  }
 
   return (
     <>
@@ -32,7 +38,7 @@ function Home() {
             Search
           </button>
         </form>
-
+        <button type="button" onClick={goToFav}>Favourites</button>
         <div className="movies-grid">
           {movies.map((movie) => (
             <MovieCard movie={movie} key={movie.id} />
