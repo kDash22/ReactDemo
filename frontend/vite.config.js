@@ -1,7 +1,8 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   plugins: [react()],
-})
+  // Use root for local dev ('serve'), and the repo name for GitHub Pages build
+  base: command === 'serve' ? '/' : '/ReactDemo/',
+}))
